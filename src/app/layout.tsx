@@ -1,8 +1,7 @@
+import AppFooter from "@/components/AppFooter";
 import { CoreProvider } from "@/providers/CoreProvider";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import "../styles/global.css";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,9 +14,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <CoreProvider>{children}</CoreProvider>
+    <html lang="ko">
+      <body className="flex flex-col justify-center items-center w-full">
+        <CoreProvider>
+          <div className="flex flex-col w-full max-w-screen-sm">
+            {children}
+            <AppFooter />
+          </div>
+        </CoreProvider>
       </body>
     </html>
   );
