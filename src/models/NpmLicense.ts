@@ -1,4 +1,4 @@
-export interface NpmLicense {
+export default interface NpmLicense {
   department: string;
   relatedTo: string;
   name: string;

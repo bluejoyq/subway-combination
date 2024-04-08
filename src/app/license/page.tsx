@@ -1,6 +1,6 @@
 import data from "@/../licenses.json";
 import AppWrapper from "@/components/AppWrapper";
-import { NpmLicense } from "@/models/NpmLicense";
+import NpmLicense from "@/models/NpmLicense";
 import Link from "next/link";
 import { FaExternalLinkAlt } from "react-icons/fa";
 export default function LicensePage() {
