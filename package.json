@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run dep:gen && next build",
+    "build": "next build",
+    "vercel-build": "npm run dep:gen && prisma generate && prisma migrate deploy && next build",
     "start": "next start",
     "lint": "next lint",
     "dep:gen": "license-report --only=prod --output=json > licenses.json"
