@@ -8,27 +8,30 @@ datasource db {
     directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
-model sandwich {
-    sandwich_id   Int    @id @default(autoincrement())
+model Sandwich {
+    sandwich_id   Int           @id @default(autoincrement())
     sandwich_name String
     image_url     String
     url           String
     calories      Int
     description   String
+    combinations  Combination[]
 }
 
-model sauce {
-    sauce_id   Int         @id @default(autoincrement())
-    sauce_name String
-    SauceLike  sauceLike[]
+model Sauce {
+    sauce_id                  Int          @id @default(autoincrement())
+    sauce_name                String
+    image_url                 String
+    tags                      String[]
+    Combination               Combination? @relation(fields: [combinationCombination_id], references: [combination_id])
+    combinationCombination_id Int?
 }
 
-model sauceLike {
-    like_id   Int      @id @default(autoincrement())
-    sauce_id  Int
-    sauce     sauce    @relation(fields: [sauce_id], references: [sauce_id])
-    user_uuid String
-    timestamp DateTime @default(now())
-
-    @@unique([sauce_id, user_uuid])
+model Combination {
+    combination_id Int      @id @default(autoincrement())
+    sandwich_id    Int
+    sauces         Sauce[]
+    sandwich       Sandwich @relation(fields: [sandwich_id], references: [sandwich_id])
+    likes          Int
+    tags           String[]
 }
